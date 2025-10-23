@@ -8,7 +8,7 @@ from torch.utils.data import Dataset, DataLoader, Subset
 from tqdm import tqdm
 
 class MultiRegionSlidingWindowDataset(Dataset):
-    def __init__(self, file_paths, params_filename, =4, time_stride=1, patch_size=64, patch_stride=32):
+    def __init__(self, file_paths, params_filename, seq_len=4, time_stride=1, patch_size=64, patch_stride=32):
         self.patch_size = patch_size
         self.seq_len = seq_len
         self.file_paths = file_paths
