@@ -8,7 +8,7 @@ from torch.utils.data import Dataset, DataLoader, Subset
 from tqdm import tqdm
 
 class MultiRegionSlidingWindowDataset(Dataset):
-    def __init__(self, file_paths, params_filename, seq_len=6, time_stride=1, patch_size=64, patch_stride=32):
+    def __init__(self, file_paths, params_filename, =4, time_stride=1, patch_size=64, patch_stride=32):
         self.patch_size = patch_size
         self.seq_len = seq_len
         self.file_paths = file_paths
@@ -29,11 +29,11 @@ class MultiRegionSlidingWindowDataset(Dataset):
         self.indices = []
         for region_idx, data in enumerate(tqdm(self.region_data_memmaps, desc="build the index")):
             T, C, H, W = data.shape
-            if T < seq_len or H < patch_size or W < patch_size:
+            if T <  or H < patch_size or W < patch_size:
                 print(f"skip this area")
                 continue
             
-            time_indices = [t for t in range(0, T - seq_len + 1, time_stride)]
+            time_indices = [t for t in range(0, T -  + 1, time_stride)]
             spatial_indices = [(i, j) for i in range(0, H-patch_size+1, patch_stride) for j in range(0, W-patch_size+1, patch_stride)]
             
             for t in time_indices:
@@ -46,7 +46,7 @@ class MultiRegionSlidingWindowDataset(Dataset):
     def __getitem__(self, idx):
         region_idx, t, i, j = self.indices[idx]
         data_array = self.region_data_memmaps[region_idx]
-        patch_seq = data_array[t:t+self.seq_len, :, i:i+self.patch_size, j:j+self.patch_size]
+        patch_seq = data_array[t:t+self., :, i:i+self.patch_size, j:j+self.patch_size]
         
         return {
             'data': torch.tensor(np.copy(patch_seq), dtype=torch.float32),
