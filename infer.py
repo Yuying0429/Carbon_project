@@ -65,7 +65,7 @@ if __name__ == "__main__":
     TRAIN_REGIONS = ['01Jiuzhaigou', '02Milin','03Ludian','04NewGuinea', '05Palu', '06Kaikoura','07Chile', '08Iwate','09Kashmir', '10wenchuan']
 
     CHANNEL_ORDER = ['Elevation', 'Slope', 'ET', 'FPAR', 'LAI', 'PGA', 'Precipitation', 'SoilMoisture', 'Temperature', 'NPP'] 
-    DATASET_PARAMS = { "seq_len": 6, "time_stride": 1, "patch_size": 64, "patch_stride": 32 }
+    DATASET_PARAMS = { "seq_len": 4, "time_stride": 1, "patch_size": 64, "patch_stride": 32 }
     BATCH_SIZE = 8
 
     _, _, test_loader, train_val_dataset = create_split_dataloaders(
