@@ -207,7 +207,7 @@ if __name__ == "__main__":
 
     learning_rate = 0.001
     epochs = 200
-    earlystopping = 15
+    earlystopping = 20
     save_every = 10
     
     input_timesteps = DATASET_PARAMS["seq_len"] - 1
